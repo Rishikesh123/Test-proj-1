@@ -23,12 +23,18 @@ void insertfirst(lli t){
 
 void insertlast(lli t){
     node* temp=create(t);
+    temp->ptr=NULL;
     node* temp1=head;
-    while(temp1->ptr!=NULL){
+    node* prev;
+    if(head==NULL){
+        head=temp;
+        return;
+    }
+    while(temp1!=NULL){
+        prev=temp1;
         temp1=temp1->ptr;
     }
-    temp1->ptr=temp;
-    temp->ptr=NULL;
+    prev->ptr=temp;
 }
 
 void insertafter(lli x, lli t){
@@ -87,7 +93,15 @@ node* search(lli t){
     }
     return temp;
 }
-
+node* searchprev(lli t){
+    node* temp=head;
+    node* prev=head;
+    while(temp->x!=t){
+        prev=temp;
+        temp=temp->ptr;
+    }
+    return prev;
+}
 void insertbefore(lli x, lli t){
     node* temp=create(t);
     node* temp1=head;
@@ -99,28 +113,32 @@ void insertbefore(lli x, lli t){
     prev->ptr=temp;
     temp->ptr=temp1;
 }
+/*
+void swapp(lli a, lli b){
+    node* t1=search(a);
+    node* t2=search(b);
+    node* t1next,*t2next,*t1prev,*t2prev;
+    t1next=t1->ptr;
+    t2next=t2->ptr;
+    t1->ptr=t2next;
+    t2->ptr=t1next;
+    node* prev1=searchprev(a);
+    node* prev2=searchprev(b);
+    prev1->ptr=t2;
+    prev2->ptr=t1;
+}
 
-
-
+*/
 
 int main(){
+    lli n,q;
+    cin >> n >> q;
+    for(lli i=0;i<n;i++){
+        lli t;
+        cin >>t;
+        insertlast(t);
+        insertfirst(t);
+    }
     
-
-    insertfirst(6);
-    insertfirst(5);
-    insertfirst(4);
-    insertfirst(8);
-    insertfirst(26);
-    insertfirst(54);
-    insertafter(8,45);
-    insertafter(5,4569);
-    insertlast(96);
-    insertlast(143);
-    insertlast(7);
-    DeleteFirst();
-    Delete(5);
-    DeleteLast();
-    insertbefore(6,89);
-    insertbefore(96,69);
     print();
 }
