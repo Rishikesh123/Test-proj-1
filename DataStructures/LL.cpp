@@ -52,6 +52,7 @@ void print(){
         cout << temp->x << " ";
         temp=temp->ptr;
     }
+    cout << "\n";
 }
 
 void DeleteFirst(){
@@ -71,8 +72,13 @@ void Delete(lli x){
         prev=temp;
         temp=temp->ptr;
     }
+    if(temp==head){
+        DeleteFirst();
+        return;
+    }
     prev->ptr=temp->ptr;
     free(temp);
+    temp->ptr=NULL;
 }
 
 void DeleteLast(){
@@ -93,52 +99,76 @@ node* search(lli t){
     }
     return temp;
 }
-node* searchprev(lli t){
-    node* temp=head;
-    node* prev=head;
-    while(temp->x!=t){
-        prev=temp;
-        temp=temp->ptr;
-    }
-    return prev;
-}
+
 void insertbefore(lli x, lli t){
     node* temp=create(t);
     node* temp1=head;
-    node* prev;
+    node* prev=NULL;
     while(temp1->x!=x){
         prev=temp1;
         temp1=temp1->ptr;
     }
+    if(temp1==head){
+        insertfirst(t);
+        return;
+    }
     prev->ptr=temp;
     temp->ptr=temp1;
 }
-/*
-void swapp(lli a, lli b){
-    node* t1=search(a);
-    node* t2=search(b);
-    node* t1next,*t2next,*t1prev,*t2prev;
-    t1next=t1->ptr;
-    t2next=t2->ptr;
-    t1->ptr=t2next;
-    t2->ptr=t1next;
-    node* prev1=searchprev(a);
-    node* prev2=searchprev(b);
-    prev1->ptr=t2;
-    prev2->ptr=t1;
-}
 
-*/
 
 int main(){
-    lli n,q;
-    cin >> n >> q;
-    for(lli i=0;i<n;i++){
-        lli t;
-        cin >>t;
-        insertlast(t);
-        insertfirst(t);
-    }
+    lli n;
+    cin >> n;
     
+    
+    
+    for(lli i=1;i<=n;i++){
+        insertlast(i);
+    }
     print();
+    
+    
+    for(lli i=1;i<=n;i++){
+        insertfirst(i);
+    }
+    print();
+    
+    
+    for(lli i=1;i<=n;i++){
+        insertbefore(i,i);
+    }
+    print();
+    
+    
+    for(lli i=1;i<=n;i++){
+        insertafter(i,i);
+    }
+    print();
+    
+    
+    for(lli i=1;i<=n;i++){
+        DeleteFirst();
+    }
+    print();
+    
+    
+    for(lli i=1;i<=n;i++){
+        Delete(i);
+    }
+    print();
+    
+    
+    
+    for(lli i=1;i<=n;i++){
+        DeleteLast();
+    }
+    print();
+    
+    
+   
+    cout << search(1)->x << endl;
+    cout << search(2)->x << endl;
+    
+    
 }
