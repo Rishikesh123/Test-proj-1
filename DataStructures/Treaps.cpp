@@ -8,7 +8,6 @@ struct Node{
     struct Node *left,*right;
 };
 
-//struct Node* root = NULL;
 
 Node * newNode(lli key){
     Node *temp= new Node;
@@ -104,19 +103,10 @@ void inorder(Node* root)
         inorder(root->left); 
         cout << "key: "<< root->key << " | priority: %d "
             << root->priority; 
-       /* if (root->left) 
-            cout << " | left child: " << root->left->key; 
-        if (root->right) 
-            cout << " | right child: " << root->right->key; */
         cout << endl; 
         inorder(root->right); 
     } 
 } 
-
-
-
-
-
 
 int main(){
     srand(time(NULL));
@@ -147,17 +137,15 @@ int main(){
     cout << "Inorder traversal of the modified tree \n"; 
     inorder(root); 
   
-    Node *res = search(root, 50); 
-    (res == NULL)? cout << "\n50 Not Found ": 
-                   cout << "\n50 found"; 
+    Node *result = search(root, 30); 
+    if(result == NULL){
+        cout << "\n30 Not Found \n";
+    }
+    else{ 
+        cout << "\n30 found\n";
+    }
   
-    
-    
-    
-    
-    
-    
-    
+  
     
     return 0;
 }
