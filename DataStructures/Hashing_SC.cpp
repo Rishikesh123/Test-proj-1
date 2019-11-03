@@ -1,7 +1,5 @@
 
 
-
-
 //**********************************SEPERATE CHAINING**************************************************
 
 
@@ -97,7 +95,7 @@ void print(struct Node *start)
   temp = start;
   while(temp!=NULL)
   {
-    cout << temp->data << " --> ";
+    cout << " --> "<< temp->data ;
     temp = temp->ptr;
   }
   cout << '\n';
@@ -142,7 +140,6 @@ void printHash()
   for (int i = 0; i < buckets; i++)
   {
     cout << i;
-    cout << " --> ";
     print(arr[i]);
     cout << endl;
   }
@@ -150,16 +147,17 @@ void printHash()
 
 int main()
 {
-  cout << "Enter the max number of buckets : " << endl;
-  cin >> buckets;
+  buckets=5;
   Hashmap();
-  int a[] = {15, 11, 27, 8, 12};
+  int a[] = {15,11,27,8,12,32,3,4,54,67,87,65,76,89,9,89,45,
+  79,8,898,9998,656,96,65,64,66
+  };
   int n = sizeof(a)/sizeof(a[0]);
   for (int i = 0; i < n; i++)
     insert(a[i]);
   deletekey(12);
   searchkey(27);
-  searchkey(12);
+  searchkey(88);
   printHash();
 
 }
