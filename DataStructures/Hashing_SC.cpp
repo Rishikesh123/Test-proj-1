@@ -120,7 +120,7 @@ int Hashfunc(int k)
 void insert(int k)
 {
     int index = Hashfunc(k);
-    insertatend(&arr[index],k);
+    insertatstart(&arr[index],k);
 }
 
 void searchkey(int k)
